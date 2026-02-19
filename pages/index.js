@@ -10,4 +10,3 @@ export async function getServerSideProps({ res }) {
   res.end(html)
   return { props: {} }
 }
-```
