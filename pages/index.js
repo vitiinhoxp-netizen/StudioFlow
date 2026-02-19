@@ -1,12 +1,16 @@
-export default function Home() {
-  return null
+import fs from 'fs'
+import path from 'path'
+
+export default function Home({ htmlContent }) {
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+    </>
+  )
 }
 
-export async function getServerSideProps({ res }) {
-  res.setHeader('Content-Type', 'text/html')
-  const fs = require('fs')
-  const path = require('path')
-  const html = fs.readFileSync(path.join(process.cwd(), 'public', 'index.html'), 'utf8')
-  res.end(html)
-  return { props: {} }
+export async function getServerSideProps() {
+  const filePath = path.join(process.cwd(), 'public', 'index.html')
+  const html = fs.readFileSync(filePath, 'utf8')
+  return { props: { htmlContent: html } }
 }
