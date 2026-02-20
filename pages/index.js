@@ -809,6 +809,7 @@ function dispFechaTudo() {
 }
 async function salvarDisp() {
   const dateStr=S.dispDate.toISOString().split('T')[0]
+console.log('profissional_id:', S.proUser.id, 'data:', dateStr)
   const horarios=Object.entries(S.dispSlots).map(([horario,aberto])=>({horario,aberto}))
   showOverlay(true)
   try {
