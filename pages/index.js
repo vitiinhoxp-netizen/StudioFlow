@@ -435,10 +435,10 @@ const PROS = [
 
 const TODOS_HORARIOS = [
   '08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30',
+  '12:00','12:30',
   '13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30',
   '17:00','17:30','18:00','18:30','19:00','19:30',
 ]
-
 function fmtDur(min) {
   if(min<60) return min+'min'
   const h=Math.floor(min/60),m=min%60
@@ -783,7 +783,7 @@ async function renderDispPanel() {
 
 function renderDispSlots(ocupados=new Set()) {
   const manha=['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30']
-  const tarde=['13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30']
+  const tarde=['12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30']
   const noite=['17:00','17:30','18:00','18:30','19:00','19:30']
   function rg(id,slots) {
     const c=document.getElementById(id); c.innerHTML=''
