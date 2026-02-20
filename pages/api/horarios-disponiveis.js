@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     }
 
     // Monta set de horários abertos pela profissional
-    const abertos = new Set(dispRows.filter(r => r.aberto).map(r => r.horario))
+    const abertos = new Set(dispRows.filter(r => r.aberto).map(r => r.horario.substring(0,5)))
 
     // 2. Busca agendamentos existentes (pendente/pago/confirmado)
     const { data: agendamentos } = await supabase
