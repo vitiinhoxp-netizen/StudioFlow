@@ -773,7 +773,7 @@ async function renderDispPanel() {
       fetch(\`/api/disponibilidade?profissional_id=\${S.proUser.id}&data=\${dateStr}\`,{headers:{'x-admin-secret':S.adminSecret}}),
       fetch(\`/api/agendamentos?profissional=\${encodeURIComponent(S.proUser.nome)}&data=\${dateStr}\`,{headers:{'x-admin-secret':S.adminSecret}})
     ])
-    if(r1.ok){ const dd=await r1.json(); dd.horarios.forEach(h=>{dispAtual[h.horario]=h.aberto===true||h.aberto==='true'||h.aberto==='verdadeiro'}) }
+    if(r1.ok){ const dd=await r1.json(); dd.horarios.forEach(h=>{dispAtual[h.horario.substring(0,5)]=h.aberto===true||h.aberto==='true'||h.aberto==='verdadeiro'}) }
     if(r2.ok){ const da=await r2.json(); (da.agendamentos||[]).filter(b=>b.status!=='cancelado').forEach(b=>ocupados.add(b.horario.substring(0,5))) }
   } catch(e){}
   S.dispSlots={}
