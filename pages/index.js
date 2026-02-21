@@ -784,7 +784,7 @@ async function alterarSenha(){
 
 // UTILS
 function fmtDate(str){if(!str)return'';const[y,m,d]=str.split('-');return d+'/'+m+'/'+y}
-function maskPhone(input){let v=input.value.replace(/\\D/g,'').substring(0,11);if(v.length>6)v='('+v.substring(0,2)+') '+v.substring(2,7)+'-'+v.substring(7);else if(v.length>2)v='('+v.substring(0,2)+') '+v.substring(2);input.value=v}
+function maskPhone(input){let v=input.value.replace(/[^0-9]/g,'').substring(0,11);if(v.length>6)v='('+v.substring(0,2)+') '+v.substring(2,7)+'-'+v.substring(7);else if(v.length>2)v='('+v.substring(0,2)+') '+v.substring(2);input.value=v}
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
 function showOverlay(v){document.getElementById('overlay').classList.toggle('show',v)}
 
