@@ -50,6 +50,7 @@
   .fi{width:100%;background:var(--white);border:1px solid var(--sand);padding:13px 15px;font-family:var(--font-b);font-size:.9rem;color:var(--dark);outline:none;transition:border-color .2s;appearance:none;border-radius:0}
   .fi:focus{border-color:var(--gold)}
   .fi::placeholder{color:var(--taupe);font-size:.83rem}
+  textarea.fi{resize:vertical;min-height:80px}
   .pcards{display:flex;flex-direction:column;gap:11px;margin-bottom:20px}
   .pcard{background:var(--white);border:1.5px solid var(--sand);padding:15px;cursor:pointer;transition:all .2s;position:relative}
   .pcard.sel{border-color:var(--gold);background:#fdf8f0}
@@ -87,7 +88,7 @@
   .fbtn:disabled{opacity:.45;cursor:not-allowed}
   .fbtn.loading::after{content:'';position:absolute;right:18px;top:50%;transform:translateY(-50%);width:16px;height:16px;border:2px solid #ffffff44;border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
   @keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
-  #s-success{align-items:center;justify-content:center;text-align:center;background:var(--dark);padding:40px 28px}
+  .suc-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:var(--dark);padding:40px 28px}
   .suc-icon{font-size:3rem;margin-bottom:18px}
   .suc-title{font-family:var(--font-d);font-size:2.4rem;font-weight:300;color:var(--white);margin-bottom:7px}
   .suc-sub{font-size:.73rem;color:var(--taupe);letter-spacing:.15em;text-transform:uppercase;margin-bottom:28px}
@@ -96,13 +97,13 @@
   .sir:last-child{border-bottom:none}
   .sik{color:var(--taupe);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase}
   .siv{color:var(--white);font-weight:500}
-  /* PRO SCREEN */
+  /* PRO */
   #s-pro{background:var(--cream)}
   .psh{background:var(--white);border-bottom:1px solid var(--sand);padding:15px 22px}
   .psnb{font-family:var(--font-d);font-size:1.4rem;font-weight:300}
   .pssv{font-size:.63rem;color:var(--taupe);letter-spacing:.1em}
   .pro-tabs{display:flex;border-bottom:2px solid var(--sand);background:var(--white);overflow-x:auto}
-  .pro-tab{flex:1;min-width:80px;padding:12px 6px;text-align:center;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--taupe);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
+  .pro-tab{flex:1;min-width:60px;padding:11px 3px;text-align:center;font-size:.56rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--taupe);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;white-space:nowrap}
   .pro-tab.active{color:var(--dark);border-bottom-color:var(--gold)}
   .pro-panel{display:none}
   .pro-panel.active{display:block}
@@ -113,11 +114,13 @@
   .dday{font-family:var(--font-d);font-size:1.6rem;font-weight:400;line-height:1}
   .dmon{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe)}
   .pslist{padding:14px 22px 40px}
-  .sitem{display:flex;gap:13px;padding:13px 0;border-bottom:1px solid var(--beige);align-items:flex-start}
+  .sitem{background:var(--white);border:1px solid var(--sand);padding:13px 15px;margin-bottom:10px}
+  .sitem-top{display:flex;gap:13px;align-items:flex-start}
   .stime{font-family:var(--font-d);font-size:1.1rem;font-weight:300;color:var(--gold);min-width:46px;padding-top:2px}
   .sim{font-size:.83rem;font-weight:500;margin-bottom:3px}
   .sis{font-size:.7rem;color:var(--taupe)}
-  /* DISPONIBILIDADE */
+  .sitem-actions{display:flex;gap:7px;margin-top:10px;padding-top:10px;border-top:1px solid var(--beige);flex-wrap:wrap}
+  /* DISP */
   .disp-header{padding:16px 22px 10px;background:var(--white);border-bottom:1px solid var(--sand)}
   .disp-info{font-size:.7rem;color:var(--taupe);line-height:1.5;margin-top:8px}
   .disp-body{padding:16px 22px 40px}
@@ -156,12 +159,16 @@
   .st-c{background:#edf7f0;color:var(--success);border:1px solid #a8d4b4}
   .st-x{background:#fdecea;color:var(--error);border:1px solid #f0b4ae}
   .adet{font-size:.73rem;color:var(--taupe);margin-bottom:3px}
-  .aact{display:flex;gap:8px;margin-top:11px;padding-top:11px;border-top:1px solid var(--beige)}
-  .bact{flex:1;padding:9px;font-size:.63rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;border:1.5px solid;cursor:pointer;transition:all .2s;background:transparent}
+  .aact{display:flex;gap:7px;margin-top:11px;padding-top:11px;border-top:1px solid var(--beige);flex-wrap:wrap}
+  .bact{flex:1;min-width:55px;padding:8px 5px;font-size:.6rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1.5px solid;cursor:pointer;transition:all .2s;background:transparent;text-align:center}
   .bconf{border-color:var(--success);color:var(--success)}
   .bconf:hover{background:var(--success);color:white}
   .bcanc{border-color:var(--error);color:var(--error)}
   .bcanc:hover{background:var(--error);color:white}
+  .breag{border-color:var(--gold);color:var(--brown)}
+  .breag:hover{background:var(--gold);color:var(--dark)}
+  .bnota{border-color:var(--taupe);color:var(--taupe)}
+  .bnota:hover{background:var(--taupe);color:white}
   .empty{text-align:center;padding:36px 16px;color:var(--taupe);font-size:.78rem}
   /* SENHA */
   .senha-box{background:var(--white);border:1px solid var(--sand);padding:22px;margin:16px 22px}
@@ -174,11 +181,40 @@
   .ltitle{font-family:var(--font-d);font-size:1.8rem;font-weight:300;margin-bottom:3px}
   .lsub{font-size:.66rem;color:var(--taupe);letter-spacing:.12em;text-transform:uppercase;margin-bottom:26px}
   .lerr{background:#fdecea;border:1px solid #f0b4ae;color:var(--error);font-size:.73rem;padding:10px 13px;margin-bottom:14px;display:none}
+  .lswitch{text-align:center;font-size:.72rem;color:var(--taupe);margin-top:16px}
+  .lswitch a{color:var(--brown);cursor:pointer;text-decoration:underline}
   .psel{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
   .pselbtn{padding:13px 15px;background:var(--white);border:1.5px solid var(--sand);text-align:left;cursor:pointer;transition:all .2s;font-family:var(--font-b)}
   .pselbtn:hover,.pselbtn.active{border-color:var(--gold);background:#fdf8f0}
   .psn{font-size:.88rem;font-weight:500}
   .psr{font-size:.66rem;color:var(--taupe);margin-top:2px}
+  /* CLIENTES */
+  .cli-list{padding:14px 22px 40px}
+  .cli-card{background:var(--white);border:1px solid var(--sand);padding:15px;margin-bottom:10px;cursor:pointer;transition:all .2s}
+  .cli-card:hover{border-color:var(--gold)}
+  .cli-name{font-family:var(--font-d);font-size:1.1rem;font-weight:500;margin-bottom:3px}
+  .cli-info{font-size:.7rem;color:var(--taupe)}
+  .cli-last{font-size:.68rem;color:var(--brown);margin-top:4px}
+  .cli-nota-tag{display:inline-block;background:#fff8e6;border:1px solid #e6c96e;color:#a87800;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;margin-top:5px}
+  /* DETALHE CLIENTE */
+  .cli-detail-header{background:var(--white);border-bottom:1px solid var(--sand);padding:18px 22px}
+  .cli-detail-name{font-family:var(--font-d);font-size:1.6rem;font-weight:300;margin-bottom:3px}
+  .cli-detail-info{font-size:.7rem;color:var(--taupe);line-height:1.8;white-space:pre-line}
+  .nota-geral-box{margin:16px 22px;background:var(--white);border:1px solid var(--sand);padding:18px}
+  .nota-geral-title{font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);margin-bottom:10px}
+  .nota-geral-text{font-size:.82rem;color:var(--dark);line-height:1.6;margin-bottom:10px;min-height:24px}
+  .hist-section{padding:0 22px 40px}
+  .hist-title{font-size:.63rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--brown);margin:16px 0 10px}
+  .hist-item{background:var(--white);border:1px solid var(--sand);padding:14px;margin-bottom:10px}
+  .hist-date{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);margin-bottom:4px}
+  .hist-svc{font-size:.85rem;font-weight:500;margin-bottom:4px}
+  .hist-nota{font-size:.75rem;color:var(--brown);font-style:italic;margin-top:8px;padding-top:8px;border-top:1px solid var(--beige)}
+  .hist-nota-label{font-size:.6rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--taupe);margin-bottom:3px;font-style:normal;display:block}
+  /* PERFIL CLIENTE */
+  .cli-perfil-box{background:var(--white);border:1px solid var(--sand);padding:22px;margin:16px 22px}
+  .cli-perfil-name{font-family:var(--font-d);font-size:1.4rem;font-weight:300;margin-bottom:3px}
+  .cli-perfil-email{font-size:.7rem;color:var(--taupe);margin-bottom:16px}
+  /* TOAST & OVERLAY */
   #toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:var(--white);padding:12px 22px;font-size:.76rem;letter-spacing:.05em;z-index:9999;transition:transform .3s;white-space:nowrap;max-width:90vw;text-align:center}
   #toast.show{transform:translateX(-50%) translateY(0)}
   #overlay{display:none;position:fixed;inset:0;background:#00000055;z-index:8000;align-items:center;justify-content:center}
@@ -186,7 +222,7 @@
   .spinner{width:40px;height:40px;border:3px solid #ffffff33;border-top-color:var(--gold);border-radius:50%;animation:spin .7s linear infinite}
   .modal{display:none;position:fixed;inset:0;background:#00000077;z-index:7000;align-items:center;justify-content:center;padding:20px}
   .modal.show{display:flex}
-  .modal-box{background:var(--white);padding:28px;width:100%;max-width:360px;border:1px solid var(--sand)}
+  .modal-box{background:var(--white);padding:28px;width:100%;max-width:360px;border:1px solid var(--sand);max-height:90vh;overflow-y:auto}
   .modal-title{font-family:var(--font-d);font-size:1.5rem;font-weight:300;margin-bottom:16px}
   .modal-actions{display:flex;gap:10px;margin-top:16px}
 </style>
@@ -196,7 +232,7 @@
 <div id="overlay"><div class="spinner"></div></div>
 <div id="toast"></div>
 
-<!-- MODAL SEMANA/MES -->
+<!-- MODAL PERIODO -->
 <div class="modal" id="modal-periodo">
   <div class="modal-box">
     <div class="modal-title">Disponibilizar por período</div>
@@ -204,7 +240,49 @@
     <div class="fg"><label class="fl">Até qual data?</label><input class="fi" type="date" id="modal-ate" /></div>
     <div class="modal-actions">
       <button class="fbtn" style="margin:0" onclick="aplicarPeriodo()">Aplicar</button>
-      <button class="fbtn" style="margin:0;background:var(--taupe)" onclick="fecharModal()">Cancelar</button>
+      <button class="fbtn" style="margin:0;background:var(--taupe)" onclick="closeModal('modal-periodo')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL REAGENDAR -->
+<div class="modal" id="modal-reagendar">
+  <div class="modal-box">
+    <div class="modal-title">Reagendar</div>
+    <p id="reag-info" style="font-size:.78rem;color:var(--taupe);margin-bottom:16px"></p>
+    <div class="fg"><label class="fl">Nova data</label><input class="fi" type="date" id="reag-date" onchange="carregarHorariosReag()" /></div>
+    <div class="fg"><label class="fl">Novo horário</label>
+      <select class="fi" id="reag-time"><option value="">Selecione a data primeiro</option></select>
+    </div>
+    <div class="modal-actions">
+      <button class="fbtn" style="margin:0" onclick="confirmarReagendamento()">Confirmar</button>
+      <button class="fbtn" style="margin:0;background:var(--taupe)" onclick="closeModal('modal-reagendar')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOTA AGENDAMENTO -->
+<div class="modal" id="modal-nota-ag">
+  <div class="modal-box">
+    <div class="modal-title">Anotação do Atendimento</div>
+    <p style="font-size:.73rem;color:var(--taupe);margin-bottom:14px">Visível apenas para você.</p>
+    <div class="fg"><textarea class="fi" id="nota-ag-text" rows="4" placeholder="Ex: cliente pediu sobrancelha mais fina..."></textarea></div>
+    <div class="modal-actions">
+      <button class="fbtn" style="margin:0" onclick="salvarNotaAgendamento()">Salvar</button>
+      <button class="fbtn" style="margin:0;background:var(--taupe)" onclick="closeModal('modal-nota-ag')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL NOTA CLIENTE -->
+<div class="modal" id="modal-nota-cli">
+  <div class="modal-box">
+    <div class="modal-title">Anotação da Cliente</div>
+    <p style="font-size:.73rem;color:var(--taupe);margin-bottom:14px">Visível para todas as profissionais.</p>
+    <div class="fg"><textarea class="fi" id="nota-cli-text" rows="4" placeholder="Ex: pele sensível, alergia a X..."></textarea></div>
+    <div class="modal-actions">
+      <button class="fbtn" style="margin:0" onclick="salvarNotaCliente()">Salvar</button>
+      <button class="fbtn" style="margin:0;background:var(--taupe)" onclick="closeModal('modal-nota-cli')">Cancelar</button>
     </div>
   </div>
 </div>
@@ -215,58 +293,94 @@
   <div class="h-tag">Beleza & Bem-estar</div>
   <div class="h-div"></div>
   <div class="h-btns">
-    <button class="btn-p" onclick="go('s-booking')">Agendar Horário</button>
+    <button class="btn-p" onclick="irParaAgendamento()">Agendar Horário</button>
     <button class="btn-s" onclick="go('s-pro-login')">Acesso Profissional</button>
   </div>
   <div class="h-bottom">08h – 20h · Segunda a Sábado</div>
 </div>
 
-<!-- BOOKING STEP 1 -->
+<!-- LOGIN CLIENTE -->
+<div id="s-cli-login" class="screen">
+  <div class="ph"><div><div class="ph-logo">Studio Flow</div><div class="ph-sub">Minha Conta</div></div><button class="btn-back" onclick="go('s-home')">←</button></div>
+  <div class="pb">
+    <div class="lbox">
+      <div class="ltitle">Entrar</div>
+      <div class="lsub">Para agendar seu horário</div>
+      <div class="lerr" id="cli-login-err"></div>
+      <div class="fg"><label class="fl">E-mail</label><input class="fi" type="email" id="cli-login-email" placeholder="seu@email.com" /></div>
+      <div class="fg"><label class="fl">Senha</label><input class="fi" type="password" id="cli-login-pass" placeholder="••••••" onkeydown="if(event.key==='Enter')clienteLogin()" /></div>
+      <button class="fbtn" onclick="clienteLogin()">Entrar</button>
+      <div class="lswitch">Não tem conta? <a onclick="go('s-cli-cadastro')">Criar cadastro</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- CADASTRO CLIENTE -->
+<div id="s-cli-cadastro" class="screen">
+  <div class="ph"><div><div class="ph-logo">Studio Flow</div><div class="ph-sub">Criar Conta</div></div><button class="btn-back" onclick="go('s-cli-login')">←</button></div>
+  <div class="pb">
+    <div class="lbox">
+      <div class="ltitle">Cadastrar</div>
+      <div class="lsub">Crie sua conta para agendar</div>
+      <div class="lerr" id="cli-cad-err"></div>
+      <div class="fg"><label class="fl">Nome completo</label><input class="fi" type="text" id="cad-nome" placeholder="Maria Silva" /></div>
+      <div class="fg"><label class="fl">WhatsApp</label><input class="fi" type="tel" id="cad-phone" placeholder="(11) 9 9999-9999" oninput="maskPhone(this)" /></div>
+      <div class="fg"><label class="fl">E-mail</label><input class="fi" type="email" id="cad-email" placeholder="seu@email.com" /></div>
+      <div class="fg"><label class="fl">Senha</label><input class="fi" type="password" id="cad-pass" placeholder="Mínimo 4 caracteres" /></div>
+      <div class="fg"><label class="fl">Confirmar senha</label><input class="fi" type="password" id="cad-pass2" placeholder="••••••" /></div>
+      <button class="fbtn" onclick="clienteCadastrar()">Criar conta e agendar</button>
+      <div class="lswitch">Já tem conta? <a onclick="go('s-cli-login')">Entrar</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- PERFIL CLIENTE -->
+<div id="s-cli-perfil" class="screen">
+  <div class="ph"><div><div class="ph-logo">Studio Flow</div><div class="ph-sub">Meu Perfil</div></div><button class="btn-back" onclick="go('s-home')">←</button></div>
+  <div class="pb">
+    <div class="cli-perfil-box">
+      <div class="cli-perfil-name" id="perfil-name">–</div>
+      <div class="cli-perfil-email" id="perfil-email">–</div>
+      <div class="fg"><label class="fl">Telefone</label><input class="fi" type="tel" id="perfil-phone" oninput="maskPhone(this)" /></div>
+      <div class="fg"><label class="fl">Data de nascimento</label><input class="fi" type="date" id="perfil-nasc" /></div>
+      <div class="fg"><label class="fl">Observações (alergias, preferências...)</label><textarea class="fi" id="perfil-obs" rows="3" placeholder="Ex: pele sensível, alergia a látex..."></textarea></div>
+      <button class="fbtn" onclick="salvarPerfil()">Salvar Perfil</button>
+    </div>
+    <div style="padding:0 22px">
+      <button class="fbtn" style="background:transparent;color:var(--taupe);border:1px solid var(--sand)" onclick="clienteLogout()">Sair da conta</button>
+    </div>
+  </div>
+</div>
+
+<!-- BOOKING -->
 <div id="s-booking" class="screen">
   <div class="ph"><div><div class="ph-logo">Studio Flow</div><div class="ph-sub">Agendamento</div></div><button class="btn-back" onclick="go('s-home')">←</button></div>
   <div class="pb">
     <div class="steps">
-      <div class="step active"><div class="sn">1</div><div class="sl">Dados</div></div>
-      <div class="sline"></div><div class="step"><div class="sn">2</div><div class="sl">Serviço</div></div>
-      <div class="sline"></div><div class="step"><div class="sn">3</div><div class="sl">Pagamento</div></div>
+      <div class="step active"><div class="sn">1</div><div class="sl">Serviço</div></div>
+      <div class="sline"></div><div class="step"><div class="sn">2</div><div class="sl">Pagamento</div></div>
     </div>
-    <div class="t1">Suas informações</div><div class="t2">Preencha para continuar</div>
-    <div class="fg"><label class="fl">Nome completo</label><input class="fi" id="c-name" type="text" placeholder="Ex: Maria Silva" /></div>
-    <div class="fg"><label class="fl">WhatsApp</label><input class="fi" id="c-phone" type="tel" placeholder="(11) 9 9999-9999" oninput="maskPhone(this)" /></div>
-    <div class="fg"><label class="fl">E-mail</label><input class="fi" id="c-email" type="email" placeholder="seu@email.com" /></div>
-    <button class="fbtn" onclick="step1Next()">Continuar →</button>
-  </div>
-</div>
-
-<!-- BOOKING STEP 2 -->
-<div id="s-booking2" class="screen">
-  <div class="ph"><div><div class="ph-logo">Studio Flow</div><div class="ph-sub">Serviço & Horário</div></div><button class="btn-back" onclick="go('s-booking')">←</button></div>
-  <div class="pb">
-    <div class="steps">
-      <div class="step done"><div class="sn">✓</div><div class="sl">Dados</div></div>
-      <div class="sline"></div><div class="step active"><div class="sn">2</div><div class="sl">Serviço</div></div>
-      <div class="sline"></div><div class="step"><div class="sn">3</div><div class="sl">Pagamento</div></div>
-    </div>
-    <div class="t1">Profissional</div><div class="t2">Quem vai te atender?</div>
+    <div class="t1">Olá, <span id="bk-client-name">–</span>!</div>
+    <div class="t2" style="margin-bottom:20px">Escolha profissional, serviço e horário</div>
+    <div class="t1" style="font-size:1.3rem">Profissional</div><div class="t2">Quem vai te atender?</div>
     <div class="pcards" id="pro-cards"></div>
-    <div class="t1" style="margin-top:6px">Serviço</div><div class="t2">O que você vai fazer?</div>
+    <div class="t1" style="font-size:1.3rem">Serviço</div><div class="t2">O que você vai fazer?</div>
     <div class="chips" id="svc-chips"><div style="color:var(--taupe);font-size:.78rem;padding:4px 0">Selecione uma profissional primeiro</div></div>
-    <div class="t1">Data</div><div class="t2">Escolha o dia</div>
+    <div class="t1" style="font-size:1.3rem">Data</div><div class="t2">Escolha o dia</div>
     <div class="fg"><input class="fi" id="bk-date" type="date" onchange="loadSlots()" /></div>
-    <div class="t1">Horário</div><div class="t2">Selecione um horário disponível</div>
+    <div class="t1" style="font-size:1.3rem">Horário</div><div class="t2">Selecione um horário disponível</div>
     <div class="tgrid" id="time-grid"><div style="grid-column:1/-1;text-align:center;color:var(--taupe);font-size:.78rem;padding:20px">Selecione profissional, serviço e data</div></div>
-    <button class="fbtn" onclick="step2Next()">Ir para Pagamento →</button>
+    <button class="fbtn" onclick="step1Next()">Ir para Pagamento →</button>
   </div>
 </div>
 
 <!-- PAYMENT -->
 <div id="s-payment" class="screen">
-  <div class="ph"><div><div class="ph-logo">Studio Flow</div><div class="ph-sub">Pagamento</div></div><button class="btn-back" onclick="go('s-booking2')">←</button></div>
+  <div class="ph"><div><div class="ph-logo">Studio Flow</div><div class="ph-sub">Pagamento</div></div><button class="btn-back" onclick="go('s-booking')">←</button></div>
   <div class="pb">
     <div class="steps">
-      <div class="step done"><div class="sn">✓</div><div class="sl">Dados</div></div>
-      <div class="sline"></div><div class="step done"><div class="sn">✓</div><div class="sl">Serviço</div></div>
-      <div class="sline"></div><div class="step active"><div class="sn">3</div><div class="sl">Pagamento</div></div>
+      <div class="step done"><div class="sn">✓</div><div class="sl">Serviço</div></div>
+      <div class="sline"></div><div class="step active"><div class="sn">2</div><div class="sl">Pagamento</div></div>
     </div>
     <div class="t1">Resumo</div><div class="t2">Confira antes de pagar</div>
     <div class="scard">
@@ -303,17 +417,19 @@
 
 <!-- SUCCESS -->
 <div id="s-success" class="screen">
-  <div class="suc-icon">✨</div>
-  <div class="suc-title">Agendado!</div>
-  <div class="suc-sub">Confirmação enviada por WhatsApp</div>
-  <div class="suc-info">
-    <div class="sir"><span class="sik">Cliente</span><span class="siv" id="sc-name">–</span></div>
-    <div class="sir"><span class="sik">Profissional</span><span class="siv" id="sc-pro">–</span></div>
-    <div class="sir"><span class="sik">Serviço</span><span class="siv" id="sc-svc">–</span></div>
-    <div class="sir"><span class="sik">Data & Hora</span><span class="siv" id="sc-dt">–</span></div>
-    <div class="sir"><span class="sik">Pagamento</span><span class="siv" style="color:var(--gold)">Aguardando confirmação</span></div>
+  <div class="suc-wrap">
+    <div class="suc-icon">✨</div>
+    <div class="suc-title">Agendado!</div>
+    <div class="suc-sub">Confirmação enviada por WhatsApp</div>
+    <div class="suc-info">
+      <div class="sir"><span class="sik">Cliente</span><span class="siv" id="sc-name">–</span></div>
+      <div class="sir"><span class="sik">Profissional</span><span class="siv" id="sc-pro">–</span></div>
+      <div class="sir"><span class="sik">Serviço</span><span class="siv" id="sc-svc">–</span></div>
+      <div class="sir"><span class="sik">Data & Hora</span><span class="siv" id="sc-dt">–</span></div>
+      <div class="sir"><span class="sik">Pagamento</span><span class="siv" style="color:var(--gold)">Aguardando confirmação</span></div>
+    </div>
+    <button class="btn-p" onclick="resetHome()">Voltar ao Início</button>
   </div>
-  <button class="btn-p" onclick="resetHome()">Voltar ao Início</button>
 </div>
 
 <!-- PRO LOGIN -->
@@ -338,11 +454,12 @@
   <div class="pro-tabs">
     <div class="pro-tab active" onclick="proTab(this,'pp-agenda')">📅 Agenda</div>
     <div class="pro-tab" onclick="proTab(this,'pp-disp')">⏰ Horários</div>
+    <div class="pro-tab" onclick="proTab(this,'pp-clientes')">👥 Clientes</div>
     <div class="pro-tab" onclick="proTab(this,'pp-ger')">📊 Gerencial</div>
     <div class="pro-tab" onclick="proTab(this,'pp-config')">⚙️ Config</div>
   </div>
 
-  <!-- ABA AGENDA -->
+  <!-- AGENDA -->
   <div class="pro-panel active" id="pp-agenda">
     <div class="dnav">
       <button class="dnbtn" onclick="proDateNav(-1)">‹</button>
@@ -352,7 +469,7 @@
     <div class="pslist" id="pro-sched"></div>
   </div>
 
-  <!-- ABA HORÁRIOS -->
+  <!-- HORÁRIOS -->
   <div class="pro-panel" id="pp-disp">
     <div class="disp-header">
       <div class="dnav" style="padding:0;background:transparent;border:none">
@@ -377,7 +494,15 @@
     </div>
   </div>
 
-  <!-- ABA GERENCIAL -->
+  <!-- CLIENTES -->
+  <div class="pro-panel" id="pp-clientes">
+    <div style="padding:14px 22px 8px;background:var(--white);border-bottom:1px solid var(--sand)">
+      <input class="fi" type="text" id="cli-search" placeholder="Buscar cliente..." oninput="filtrarClientes(this.value)" style="margin:0" />
+    </div>
+    <div class="cli-list" id="cli-list-container"><div class="empty">Carregando...</div></div>
+  </div>
+
+  <!-- GERENCIAL -->
   <div class="pro-panel" id="pp-ger">
     <div class="ger-stats">
       <div class="ger-card"><div class="ger-num" id="ger-mes">–</div><div class="ger-lbl">Este mês</div></div>
@@ -396,7 +521,7 @@
     </div>
   </div>
 
-  <!-- ABA CONFIG -->
+  <!-- CONFIG -->
   <div class="pro-panel" id="pp-config">
     <div class="senha-box">
       <div class="senha-title">Alterar Senha</div>
@@ -411,8 +536,29 @@
   </div>
 </div>
 
+<!-- DETALHE CLIENTE (tela pro) -->
+<div id="s-cli-detail" class="screen">
+  <div class="ph">
+    <div><div class="ph-logo">Studio Flow</div><div class="ph-sub">Cliente</div></div>
+    <button class="btn-back" id="btn-back-cli">←</button>
+  </div>
+  <div class="cli-detail-header">
+    <div class="cli-detail-name" id="cd-name">–</div>
+    <div class="cli-detail-info" id="cd-info">–</div>
+  </div>
+  <div class="nota-geral-box">
+    <div class="nota-geral-title">📌 Anotação Geral (visível para todas as profissionais)</div>
+    <div class="nota-geral-text" id="cd-nota-geral-text">Nenhuma anotação ainda.</div>
+    <button class="fbtn" style="margin-top:4px" onclick="abrirNotaCliente()">Editar Anotação</button>
+  </div>
+  <div class="hist-section">
+    <div class="hist-title">Histórico de Atendimentos</div>
+    <div id="cd-historico"><div class="empty">Carregando...</div></div>
+  </div>
+</div>
+
 <script>
-const PROS = [
+const PROS=[
   {id:null,nome:'Samara Sodré',servicos:[
     {nome:'Alongamento de cílios',dur:120},{nome:'Design de sobrancelhas',dur:40},
     {nome:'Design com Henna',dur:60},{nome:'Micro de sobrancelha',dur:150},
@@ -432,44 +578,104 @@ const PROS = [
   ]},
 ]
 const TODOS_HORARIOS=['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30']
-function fmtDur(min){if(min<60)return min+'min';const h=Math.floor(min/60),m=min%60;return m?h+'h'+m+'min':h+'h'}
+function fmtDur(m){if(m<60)return m+'min';const h=Math.floor(m/60),r=m%60;return r?h+'h'+r+'min':h+'h'}
+function fmtDate(s){if(!s)return'';const[y,m,d]=s.split('-');return d+'/'+m+'/'+y}
+function escQ(s){return String(s).replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;')}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+function showOverlay(v){document.getElementById('overlay').classList.toggle('show',v)}
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function closeModal(id){document.getElementById(id).classList.remove('show')}
+function maskPhone(input){let v=input.value.replace(/[^0-9]/g,'').substring(0,11);if(v.length>6)v='('+v.substring(0,2)+') '+v.substring(2,7)+'-'+v.substring(7);else if(v.length>2)v='('+v.substring(0,2)+') '+v.substring(2);input.value=v}
 
 const S={
-  client:{},pro:null,service:null,serviceDur:0,date:null,time:null,
+  pro:null,service:null,serviceDur:0,date:null,time:null,
   proUser:null,proDate:new Date(),dispDate:new Date(),dispSlots:{},
-  gerFilter:'todos',gerAgendamentos:[],adminSecret:null,agendamentos:[],
+  gerFilter:'todos',gerAgendamentos:[],adminSecret:null,
+  clienteLogado:null,
+  cliAtual:null,
+  reagAgId:null,reagProId:null,reagProNome:null,reagServico:null,reagDur:0,
+  notaAgId:null,
+  todosClientes:[],
 }
 
-function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
-function proTab(el,pid){
-  document.querySelectorAll('.pro-tab').forEach(t=>t.classList.remove('active'))
-  document.querySelectorAll('.pro-panel').forEach(p=>p.classList.remove('active'))
-  el.classList.add('active');document.getElementById(pid).classList.add('active')
-  if(pid==='pp-disp')renderDispPanel()
-  if(pid==='pp-ger')renderGerencial()
-}
-
+// ===== INIT =====
 async function initPros(){
   try{
     const res=await fetch('/api/profissionais')
     if(res.ok){const d=await res.json();d.profissionais.forEach((p,i)=>{if(PROS[i])PROS[i].id=p.id})}
   }catch(e){PROS.forEach((p,i)=>p.id='demo-'+i)}
   renderProCards();renderProSelList()
+  const t=localStorage.getItem('cli_token'),c=localStorage.getItem('cli_data')
+  if(t&&c){try{S.clienteLogado=JSON.parse(c)}catch(e){}}
 }
 
-// BOOKING
-function step1Next(){
-  const name=document.getElementById('c-name').value.trim()
-  const phone=document.getElementById('c-phone').value.trim()
-  const email=document.getElementById('c-email').value.trim()
-  if(!name||!phone||!email){toast('Preencha todos os campos');return}
-  if(!email.includes('@')){toast('E-mail inválido');return}
-  S.client={name,phone,email}
+// ===== AUTH CLIENTE =====
+function irParaAgendamento(){
+  if(!S.clienteLogado){go('s-cli-login');return}
+  document.getElementById('bk-client-name').textContent=S.clienteLogado.nome.split(' ')[0]
   const today=new Date().toISOString().split('T')[0]
   const di=document.getElementById('bk-date')
   di.min=today;if(!di.value)di.value=today;S.date=di.value
-  go('s-booking2')
+  go('s-booking')
 }
+async function clienteLogin(){
+  const email=document.getElementById('cli-login-email').value.trim()
+  const pass=document.getElementById('cli-login-pass').value
+  const err=document.getElementById('cli-login-err');err.style.display='none'
+  if(!email||!pass){err.textContent='Preencha e-mail e senha';err.style.display='block';return}
+  showOverlay(true)
+  try{
+    const res=await fetch('/api/clientes/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,senha:pass})})
+    const d=await res.json()
+    if(!res.ok){err.textContent=d.error||'E-mail ou senha incorretos';err.style.display='block';return}
+    S.clienteLogado=d.cliente
+    localStorage.setItem('cli_token',d.token);localStorage.setItem('cli_data',JSON.stringify(d.cliente))
+    document.getElementById('cli-login-email').value='';document.getElementById('cli-login-pass').value=''
+    irParaAgendamento()
+  }catch(e){err.textContent='Erro de conexão';err.style.display='block'}
+  finally{showOverlay(false)}
+}
+async function clienteCadastrar(){
+  const nome=document.getElementById('cad-nome').value.trim()
+  const phone=document.getElementById('cad-phone').value.trim()
+  const email=document.getElementById('cad-email').value.trim()
+  const pass=document.getElementById('cad-pass').value
+  const pass2=document.getElementById('cad-pass2').value
+  const err=document.getElementById('cli-cad-err');err.style.display='none'
+  if(!nome||!phone||!email||!pass){err.textContent='Preencha todos os campos';err.style.display='block';return}
+  if(!email.includes('@')){err.textContent='E-mail inválido';err.style.display='block';return}
+  if(pass.length<4){err.textContent='Senha deve ter ao menos 4 caracteres';err.style.display='block';return}
+  if(pass!==pass2){err.textContent='As senhas não coincidem';err.style.display='block';return}
+  showOverlay(true)
+  try{
+    const res=await fetch('/api/clientes/cadastro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,telefone:phone,email,senha:pass})})
+    const d=await res.json()
+    if(!res.ok){err.textContent=d.error||'Erro ao criar conta';err.style.display='block';return}
+    S.clienteLogado=d.cliente
+    localStorage.setItem('cli_token',d.token);localStorage.setItem('cli_data',JSON.stringify(d.cliente))
+    irParaAgendamento()
+  }catch(e){err.textContent='Erro de conexão';err.style.display='block'}
+  finally{showOverlay(false)}
+}
+function clienteLogout(){
+  S.clienteLogado=null
+  localStorage.removeItem('cli_token');localStorage.removeItem('cli_data')
+  go('s-home')
+}
+async function salvarPerfil(){
+  showOverlay(true)
+  try{
+    const res=await fetch('/api/clientes/perfil',{method:'PATCH',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('cli_token')},
+      body:JSON.stringify({telefone:document.getElementById('perfil-phone').value.trim(),data_nascimento:document.getElementById('perfil-nasc').value,observacoes:document.getElementById('perfil-obs').value.trim()})
+    })
+    if(res.ok){const d=await res.json();S.clienteLogado=d.cliente;localStorage.setItem('cli_data',JSON.stringify(d.cliente));toast('✓ Perfil salvo!')}
+    else toast('Erro ao salvar perfil')
+  }catch(e){toast('Erro de conexão')}
+  finally{showOverlay(false)}
+}
+
+// ===== BOOKING =====
 function renderProCards(){
   const c=document.getElementById('pro-cards');c.innerHTML=''
   PROS.forEach(p=>{
@@ -509,12 +715,13 @@ function renderSlots(horarios){
     grid.appendChild(el)
   })
 }
-function step2Next(){
+function step1Next(){
   if(!S.pro){toast('Selecione uma profissional');return}
   if(!S.service){toast('Selecione um serviço');return}
   if(!S.date){toast('Escolha uma data');return}
   if(!S.time){toast('Selecione um horário');return}
-  document.getElementById('sm-name').textContent=S.client.name
+  const cli=S.clienteLogado
+  document.getElementById('sm-name').textContent=cli.nome
   document.getElementById('sm-pro').textContent=S.pro.nome
   document.getElementById('sm-svc').textContent=S.service
   document.getElementById('sm-dur').textContent=fmtDur(S.serviceDur)
@@ -526,8 +733,9 @@ function copyPix(){navigator.clipboard.writeText('09525353516').then(()=>toast('
 async function confirmar(metodo){
   const btn=document.getElementById(metodo==='pix'?'btn-pix-confirm':'btn-card-confirm')
   btn.disabled=true;btn.classList.add('loading');showOverlay(true)
+  const cli=S.clienteLogado
   try{
-    const res=await fetch('/api/criar-pagamento',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cliente_nome:S.client.name,cliente_telefone:S.client.phone,cliente_email:S.client.email,profissional_id:S.pro.id,profissional_nome:S.pro.nome,servico:S.service,duracao:S.serviceDur,data:S.date,horario:S.time,metodo_pagamento:metodo})})
+    const res=await fetch('/api/criar-pagamento',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('cli_token')},body:JSON.stringify({cliente_id:cli.id,cliente_nome:cli.nome,cliente_telefone:cli.telefone,cliente_email:cli.email,profissional_id:S.pro.id,profissional_nome:S.pro.nome,servico:S.service,duracao:S.serviceDur,data:S.date,horario:S.time,metodo_pagamento:metodo})})
     const data=await res.json()
     if(!res.ok){toast('⚠️ '+(data.error||'Erro ao agendar'));return}
     if(metodo==='cartao'&&data.mp_init_point){window.location.href=data.mp_sandbox_init_point||data.mp_init_point;return}
@@ -536,22 +744,22 @@ async function confirmar(metodo){
   finally{btn.disabled=false;btn.classList.remove('loading');showOverlay(false)}
 }
 function showSuccess(){
-  document.getElementById('sc-name').textContent=S.client.name
+  const cli=S.clienteLogado
+  document.getElementById('sc-name').textContent=cli.nome
   document.getElementById('sc-pro').textContent=S.pro.nome
   document.getElementById('sc-svc').textContent=S.service
   document.getElementById('sc-dt').textContent=fmtDate(S.date)+' às '+S.time
   go('s-success')
 }
 function resetHome(){
-  S.client={};S.pro=null;S.service=null;S.serviceDur=0;S.date=null;S.time=null
-  document.getElementById('c-name').value='';document.getElementById('c-phone').value='';document.getElementById('c-email').value=''
+  S.pro=null;S.service=null;S.serviceDur=0;S.date=null;S.time=null
   document.querySelectorAll('#pro-cards .pcard').forEach(c=>c.classList.remove('sel'))
   document.getElementById('svc-chips').innerHTML='<div style="color:var(--taupe);font-size:.78rem;padding:4px 0">Selecione uma profissional primeiro</div>'
   document.getElementById('time-grid').innerHTML='<div style="grid-column:1/-1;text-align:center;color:var(--taupe);font-size:.78rem;padding:20px">Selecione profissional, serviço e data</div>'
   go('s-home')
 }
 
-// PRO LOGIN
+// ===== PRO LOGIN =====
 let pendingPro=null
 function renderProSelList(){
   const c=document.getElementById('pro-sel-list');c.innerHTML=''
@@ -575,7 +783,6 @@ async function proLogin(){
     S.proDate=new Date();S.dispDate=new Date()
     document.getElementById('pro-nm').textContent=S.proUser.nome
     document.getElementById('pro-sv').textContent=S.proUser.servicos.map(s=>s.nome).join(' · ')
-    // reset tabs
     document.querySelectorAll('.pro-tab').forEach(t=>t.classList.remove('active'))
     document.querySelectorAll('.pro-panel').forEach(p=>p.classList.remove('active'))
     document.querySelector('.pro-tab').classList.add('active')
@@ -585,8 +792,16 @@ async function proLogin(){
   }catch(e){document.getElementById('pro-err').style.display='block'}
   finally{showOverlay(false)}
 }
+function proTab(el,pid){
+  document.querySelectorAll('.pro-tab').forEach(t=>t.classList.remove('active'))
+  document.querySelectorAll('.pro-panel').forEach(p=>p.classList.remove('active'))
+  el.classList.add('active');document.getElementById(pid).classList.add('active')
+  if(pid==='pp-disp')renderDispPanel()
+  if(pid==='pp-ger')renderGerencial()
+  if(pid==='pp-clientes')renderClientes()
+}
 
-// AGENDA
+// ===== AGENDA =====
 async function renderProSched(){
   const d=S.proDate
   const days=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb']
@@ -608,13 +823,171 @@ function renderProList(bks){
   mine.forEach(b=>{
     const el=document.createElement('div');el.className='sitem'
     const sc=b.status==='confirmado'?'var(--success)':'var(--gold)'
-    el.innerHTML='<div class="stime">'+b.horario.substring(0,5)+'</div><div><div class="sim">'+b.cliente_nome+'</div><div class="sis">'+b.servico+' · <span style="color:'+sc+'">'+( b.status==='confirmado'?'Confirmado':'Pendente')+'</span></div><div class="sis" style="margin-top:2px">📱 '+b.cliente_telefone+'</div></div>'
+    const proId=escQ(b.profissional_id||S.proUser.id)
+    const proNome=escQ(b.profissional_nome||S.proUser.nome)
+    const svc=escQ(b.servico)
+    const nota=escQ(b.nota_atendimento||'')
+    el.innerHTML=
+      '<div class="sitem-top">'+
+        '<div class="stime">'+b.horario.substring(0,5)+'</div>'+
+        '<div>'+
+          '<div class="sim">'+b.cliente_nome+'</div>'+
+          '<div class="sis">'+b.servico+' · <span style="color:'+sc+'">'+(b.status==='confirmado'?'Confirmado':'Pendente')+'</span></div>'+
+          '<div class="sis" style="margin-top:2px">📱 '+b.cliente_telefone+'</div>'+
+          (b.nota_atendimento?'<div class="sis" style="margin-top:4px;color:var(--brown);font-style:italic">📝 '+b.nota_atendimento+'</div>':'')+
+        '</div>'+
+      '</div>'+
+      '<div class="sitem-actions">'+
+        '<button class="bact breag" onclick="abrirReagendar(\''+b.id+'\',\''+proId+'\',\''+proNome+'\',\''+svc+'\','+(b.duracao||60)+')">Reagendar</button>'+
+        '<button class="bact bnota" onclick="abrirNotaAgendamento(\''+b.id+'\',\''+nota+'\')">Anotar</button>'+
+      '</div>'
     list.appendChild(el)
   })
 }
 async function proDateNav(dir){S.proDate=new Date(S.proDate);S.proDate.setDate(S.proDate.getDate()+dir);await renderProSched()}
 
-// DISPONIBILIDADE
+// ===== REAGENDAR =====
+function abrirReagendar(id,proId,proNome,servico,dur){
+  S.reagAgId=id;S.reagProId=proId;S.reagProNome=proNome;S.reagServico=servico;S.reagDur=dur
+  document.getElementById('reag-info').textContent='Reagendando: '+servico+' com '+proNome
+  const today=new Date().toISOString().split('T')[0]
+  document.getElementById('reag-date').min=today;document.getElementById('reag-date').value=''
+  document.getElementById('reag-time').innerHTML='<option value="">Selecione a data primeiro</option>'
+  document.getElementById('modal-reagendar').classList.add('show')
+}
+async function carregarHorariosReag(){
+  const date=document.getElementById('reag-date').value
+  const sel=document.getElementById('reag-time')
+  if(!date){sel.innerHTML='<option value="">Selecione a data primeiro</option>';return}
+  sel.innerHTML='<option value="">Carregando...</option>'
+  try{
+    const res=await fetch('/api/horarios-disponiveis?profissional_id='+S.reagProId+'&data='+date+'&duracao='+S.reagDur)
+    const data=await res.json()
+    const horarios=(data.horarios||[]).filter(h=>h.disponivel)
+    if(!horarios.length){sel.innerHTML='<option value="">Nenhum horário disponível</option>';return}
+    sel.innerHTML='<option value="">Selecione o horário</option>'
+    horarios.forEach(h=>{const o=document.createElement('option');o.value=h.horario;o.textContent=h.horario;sel.appendChild(o)})
+  }catch(e){sel.innerHTML='<option value="">Erro ao carregar</option>'}
+}
+async function confirmarReagendamento(){
+  const date=document.getElementById('reag-date').value
+  const time=document.getElementById('reag-time').value
+  if(!date||!time){toast('Selecione data e horário');return}
+  showOverlay(true)
+  try{
+    const res=await fetch('/api/agendamentos',{method:'PATCH',headers:{'Content-Type':'application/json','x-admin-secret':S.adminSecret},body:JSON.stringify({id:S.reagAgId,data:date,horario:time})})
+    if(res.ok){closeModal('modal-reagendar');toast('✓ Reagendado para '+fmtDate(date)+' às '+time);await renderProSched()}
+    else toast('Erro ao reagendar')
+  }catch(e){toast('Erro ao reagendar')}
+  finally{showOverlay(false)}
+}
+
+// ===== ANOTAÇÕES =====
+function abrirNotaAgendamento(agId,notaAtual){
+  S.notaAgId=agId
+  document.getElementById('nota-ag-text').value=notaAtual
+  document.getElementById('modal-nota-ag').classList.add('show')
+}
+async function salvarNotaAgendamento(){
+  showOverlay(true)
+  try{
+    const res=await fetch('/api/agendamentos',{method:'PATCH',headers:{'Content-Type':'application/json','x-admin-secret':S.adminSecret},body:JSON.stringify({id:S.notaAgId,nota_atendimento:document.getElementById('nota-ag-text').value.trim()})})
+    if(res.ok){closeModal('modal-nota-ag');toast('✓ Anotação salva!');await renderProSched()}
+    else toast('Erro ao salvar anotação')
+  }catch(e){toast('Erro ao salvar')}
+  finally{showOverlay(false)}
+}
+function abrirNotaCliente(){
+  const atual=document.getElementById('cd-nota-geral-text').textContent
+  document.getElementById('nota-cli-text').value=atual==='Nenhuma anotação ainda.'?'':atual
+  document.getElementById('modal-nota-cli').classList.add('show')
+}
+async function salvarNotaCliente(){
+  if(!S.cliAtual)return
+  const nota=document.getElementById('nota-cli-text').value.trim()
+  showOverlay(true)
+  try{
+    const res=await fetch('/api/clientes/'+S.cliAtual.id+'/nota',{method:'PATCH',headers:{'Content-Type':'application/json','x-admin-secret':S.adminSecret},body:JSON.stringify({nota_geral:nota})})
+    if(res.ok){closeModal('modal-nota-cli');document.getElementById('cd-nota-geral-text').textContent=nota||'Nenhuma anotação ainda.';toast('✓ Anotação salva!')}
+    else toast('Erro ao salvar')
+  }catch(e){toast('Erro ao salvar')}
+  finally{showOverlay(false)}
+}
+
+// ===== CLIENTES =====
+async function renderClientes(){
+  const c=document.getElementById('cli-list-container')
+  c.innerHTML='<div class="empty">Carregando...</div>'
+  try{
+    const res=await fetch('/api/clientes?profissional='+encodeURIComponent(S.proUser.nome),{headers:{'x-admin-secret':S.adminSecret}})
+    const d=await res.json()
+    S.todosClientes=d.clientes||[]
+    exibirListaClientes(S.todosClientes)
+  }catch(e){c.innerHTML='<div class="empty">Erro ao carregar clientes</div>'}
+}
+function exibirListaClientes(lista){
+  const c=document.getElementById('cli-list-container')
+  if(!lista.length){c.innerHTML='<div class="empty">Nenhuma cliente encontrada</div>';return}
+  c.innerHTML=''
+  lista.forEach(cli=>{
+    const el=document.createElement('div');el.className='cli-card'
+    el.innerHTML=
+      '<div class="cli-name">'+cli.nome+'</div>'+
+      '<div class="cli-info">📱 '+(cli.telefone||'–')+' · ✉️ '+(cli.email||'–')+'</div>'+
+      (cli.ultimo_servico?'<div class="cli-last">Último: '+cli.ultimo_servico+' em '+fmtDate(cli.ultima_data)+'</div>':'')+
+      (cli.nota_geral?'<div class="cli-nota-tag">📌 Tem anotação</div>':'')
+    el.onclick=()=>abrirDetalheCliente(cli)
+    c.appendChild(el)
+  })
+}
+function filtrarClientes(q){
+  const q2=q.toLowerCase()
+  exibirListaClientes(S.todosClientes.filter(c=>c.nome.toLowerCase().includes(q2)||(c.telefone&&c.telefone.includes(q2))||(c.email&&c.email.toLowerCase().includes(q2))))
+}
+async function abrirDetalheCliente(cli){
+  S.cliAtual=cli
+  document.getElementById('cd-name').textContent=cli.nome
+  document.getElementById('cd-info').textContent=
+    '📱 '+(cli.telefone||'–')+'\n'+
+    '✉️ '+(cli.email||'–')+
+    (cli.data_nascimento?'\n🎂 '+fmtDate(cli.data_nascimento):'')+
+    (cli.observacoes?'\n💬 '+cli.observacoes:'')
+  document.getElementById('cd-nota-geral-text').textContent=cli.nota_geral||'Nenhuma anotação ainda.'
+  document.getElementById('cd-historico').innerHTML='<div class="empty">Carregando...</div>'
+  // botão voltar volta para aba clientes
+  document.getElementById('btn-back-cli').onclick=()=>{go('s-pro');proTab(document.querySelectorAll('.pro-tab')[2],'pp-clientes')}
+  go('s-cli-detail')
+  try{
+    const res=await fetch('/api/agendamentos?cliente_id='+cli.id+'&profissional='+encodeURIComponent(S.proUser.nome),{headers:{'x-admin-secret':S.adminSecret}})
+    const d=await res.json()
+    renderHistorico(d.agendamentos||[])
+  }catch(e){document.getElementById('cd-historico').innerHTML='<div class="empty">Erro ao carregar histórico</div>'}
+}
+function renderHistorico(ags){
+  const c=document.getElementById('cd-historico')
+  const list=[...ags].filter(b=>b.status!=='cancelado').sort((a,b)=>b.data.localeCompare(a.data)||b.horario.localeCompare(a.horario))
+  if(!list.length){c.innerHTML='<div class="empty">Nenhum atendimento registrado</div>';return}
+  c.innerHTML=''
+  list.forEach(b=>{
+    const el=document.createElement('div');el.className='hist-item'
+    const stC=b.status==='confirmado'?'var(--success)':'var(--gold)'
+    const proId=escQ(b.profissional_id||S.proUser.id)
+    const proNome=escQ(b.profissional_nome||S.proUser.nome)
+    const svc=escQ(b.servico)
+    const nota=escQ(b.nota_atendimento||'')
+    el.innerHTML=
+      '<div class="hist-date">'+fmtDate(b.data)+' às '+b.horario.substring(0,5)+'</div>'+
+      '<div class="hist-svc">'+b.servico+' <span style="font-size:.65rem;color:'+stC+'">'+(b.status==='confirmado'?'Confirmado':'Pendente')+'</span></div>'+
+      (b.nota_atendimento?'<div class="hist-nota"><span class="hist-nota-label">Anotação do atendimento</span>'+b.nota_atendimento+'</div>':'')+
+      '<div style="display:flex;gap:7px;margin-top:10px">'+
+        '<button class="bact breag" style="font-size:.58rem" onclick="abrirReagendar(\''+b.id+'\',\''+proId+'\',\''+proNome+'\',\''+svc+'\','+(b.duracao||60)+')">Reagendar</button>'+
+        '<button class="bact bnota" style="font-size:.58rem" onclick="abrirNotaAgendamento(\''+b.id+'\',\''+nota+'\')">Anotar</button>'+
+      '</div>'
+    c.appendChild(el)
+  })
+}
+
+// ===== DISPONIBILIDADE =====
 async function renderDispPanel(){
   const d=S.dispDate
   const days=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb']
@@ -625,7 +998,7 @@ async function renderDispPanel(){
   const dateStr=d.toISOString().split('T')[0]
   let dispAtual={},ocupados=new Set()
   try{
-    const [r1,r2]=await Promise.all([
+    const[r1,r2]=await Promise.all([
       fetch('/api/disponibilidade?profissional_id='+S.proUser.id+'&data='+dateStr,{headers:{'x-admin-secret':S.adminSecret}}),
       fetch('/api/agendamentos?profissional='+encodeURIComponent(S.proUser.nome)+'&data='+dateStr,{headers:{'x-admin-secret':S.adminSecret}})
     ])
@@ -668,26 +1041,22 @@ async function salvarDisp(){
 }
 async function dispDateNav(dir){S.dispDate=new Date(S.dispDate);S.dispDate.setDate(S.dispDate.getDate()+dir);await renderDispPanel()}
 
-// COPIAR POR PERÍODO
+// ===== PERÍODO =====
 function abrirModalPeriodo(tipo){
-  const hoje=new Date(S.dispDate)
-  const ate=new Date(hoje)
-  if(tipo==='semana')ate.setDate(ate.getDate()+6)
-  else ate.setMonth(ate.getMonth()+1)
+  const hoje=new Date(S.dispDate),ate=new Date(hoje)
+  if(tipo==='semana')ate.setDate(ate.getDate()+6);else ate.setMonth(ate.getMonth()+1)
   document.getElementById('modal-ate').value=ate.toISOString().split('T')[0]
   document.getElementById('modal-ate').min=new Date(hoje.getTime()+86400000).toISOString().split('T')[0]
   document.getElementById('modal-periodo').classList.add('show')
 }
-function fecharModal(){document.getElementById('modal-periodo').classList.remove('show')}
 async function aplicarPeriodo(){
   const ate=document.getElementById('modal-ate').value
   if(!ate){toast('Selecione uma data');return}
-  fecharModal();showOverlay(true)
+  closeModal('modal-periodo');showOverlay(true)
   const horarios=Object.entries(S.dispSlots).map(([horario,aberto])=>({horario,aberto}))
   const inicio=new Date(S.dispDate);inicio.setDate(inicio.getDate()+1)
   const fim=new Date(ate)
-  let erros=0,salvos=0
-  const promises=[]
+  let erros=0,salvos=0,promises=[]
   for(let d=new Date(inicio);d<=fim;d.setDate(d.getDate()+1)){
     const dateStr=new Date(d).toISOString().split('T')[0]
     promises.push(fetch('/api/disponibilidade',{method:'POST',headers:{'Content-Type':'application/json','x-admin-secret':S.adminSecret},body:JSON.stringify({profissional_id:S.proUser.id,data:dateStr,horarios})}).then(r=>r.ok?salvos++:erros++).catch(()=>erros++))
@@ -697,7 +1066,7 @@ async function aplicarPeriodo(){
   toast(erros===0?'✓ Copiado para '+salvos+' dias!':'Copiado com '+erros+' erros')
 }
 
-// GERENCIAL
+// ===== GERENCIAL =====
 async function renderGerencial(){
   showOverlay(true)
   try{
@@ -709,12 +1078,10 @@ async function renderGerencial(){
   finally{showOverlay(false)}
 }
 function atualizarGerencial(){
-  const all=S.gerAgendamentos
-  const mes=new Date().toISOString().substring(0,7)
+  const all=S.gerAgendamentos,mes=new Date().toISOString().substring(0,7)
   const doMes=all.filter(b=>b.data&&b.data.substring(0,7)===mes)
   const conf=doMes.filter(b=>b.status==='confirmado')
   const pend=all.filter(b=>b.status==='pendente')
-  // top serviço
   const svcCount={}
   all.forEach(b=>{if(b.servico)svcCount[b.servico]=(svcCount[b.servico]||0)+1})
   const topSvc=Object.entries(svcCount).sort((a,b)=>b[1]-a[1])[0]
@@ -739,7 +1106,22 @@ function renderGerLista(){
     const el=document.createElement('div');el.className='acard'
     const stL=b.status==='confirmado'?'Confirmado':b.status==='pendente'?'Pendente':'Cancelado'
     const stC=b.status==='confirmado'?'st-c':b.status==='pendente'?'st-p':'st-x'
-    el.innerHTML='<div class="atop"><div class="aname">'+b.cliente_nome+'</div><div class="astatus '+stC+'">'+stL+'</div></div><div class="adet">🗓 '+fmtDate(b.data)+' às '+b.horario.substring(0,5)+'</div><div class="adet">💅 '+b.servico+'</div><div class="adet">📱 '+b.cliente_telefone+'</div>'+(b.status!=='cancelado'?'<div class="aact">'+(b.status==='pendente'?'<button class="bact bconf" onclick="gerUpdStatus(\''+b.id+'\',\'confirmado\')">Confirmar</button>':'')+'<button class="bact bcanc" onclick="gerUpdStatus(\''+b.id+'\',\'cancelado\')">Cancelar</button></div>':'')
+    const proId=escQ(b.profissional_id||S.proUser.id)
+    const proNome=escQ(b.profissional_nome||S.proUser.nome)
+    const svc=escQ(b.servico)
+    const nota=escQ(b.nota_atendimento||'')
+    el.innerHTML=
+      '<div class="atop"><div class="aname">'+b.cliente_nome+'</div><div class="astatus '+stC+'">'+stL+'</div></div>'+
+      '<div class="adet">🗓 '+fmtDate(b.data)+' às '+b.horario.substring(0,5)+'</div>'+
+      '<div class="adet">💅 '+b.servico+'</div>'+
+      '<div class="adet">📱 '+b.cliente_telefone+'</div>'+
+      (b.nota_atendimento?'<div class="adet" style="color:var(--brown);font-style:italic">📝 '+b.nota_atendimento+'</div>':'')+
+      '<div class="aact">'+
+        (b.status==='pendente'?'<button class="bact bconf" onclick="gerUpdStatus(\''+b.id+'\',\'confirmado\')">Confirmar</button>':'')+
+        (b.status!=='cancelado'?'<button class="bact bcanc" onclick="gerUpdStatus(\''+b.id+'\',\'cancelado\')">Cancelar</button>':'')+
+        '<button class="bact breag" onclick="abrirReagendar(\''+b.id+'\',\''+proId+'\',\''+proNome+'\',\''+svc+'\','+(b.duracao||60)+')">Reagendar</button>'+
+        '<button class="bact bnota" onclick="abrirNotaAgendamento(\''+b.id+'\',\''+nota+'\')">Anotar</button>'+
+      '</div>'
     c.appendChild(el)
   })
 }
@@ -751,13 +1133,12 @@ async function gerUpdStatus(id,status){
   }finally{showOverlay(false)}
 }
 
-// ALTERAR SENHA
+// ===== SENHA =====
 async function alterarSenha(){
   const atual=document.getElementById('senha-atual').value
   const nova=document.getElementById('senha-nova').value
   const conf=document.getElementById('senha-conf').value
-  const err=document.getElementById('senha-err')
-  const ok=document.getElementById('senha-ok')
+  const err=document.getElementById('senha-err'),ok=document.getElementById('senha-ok')
   err.style.display='none';ok.style.display='none'
   if(!atual||!nova||!conf){err.textContent='Preencha todos os campos';err.style.display='block';return}
   if(nova!==conf){err.textContent='As senhas não coincidem';err.style.display='block';return}
@@ -765,25 +1146,11 @@ async function alterarSenha(){
   showOverlay(true)
   try{
     const res=await fetch('/api/pro-auth',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({profissional_id:S.proUser.id,senha_atual:atual,senha_nova:nova})})
-    if(res.ok){
-      S.adminSecret=nova
-      document.getElementById('senha-atual').value=''
-      document.getElementById('senha-nova').value=''
-      document.getElementById('senha-conf').value=''
-      ok.style.display='block';toast('✓ Senha alterada!')
-    }else{
-      const d=await res.json()
-      err.textContent=d.error||'Senha atual incorreta';err.style.display='block'
-    }
+    if(res.ok){S.adminSecret=nova;document.getElementById('senha-atual').value='';document.getElementById('senha-nova').value='';document.getElementById('senha-conf').value='';ok.style.display='block';toast('✓ Senha alterada!')}
+    else{const d=await res.json();err.textContent=d.error||'Senha atual incorreta';err.style.display='block'}
   }catch(e){err.textContent='Erro ao alterar senha';err.style.display='block'}
   finally{showOverlay(false)}
 }
-
-// UTILS
-function fmtDate(str){if(!str)return'';const[y,m,d]=str.split('-');return d+'/'+m+'/'+y}
-function maskPhone(input){let v=input.value.replace(/[^0-9]/g,'').substring(0,11);if(v.length>6)v='('+v.substring(0,2)+') '+v.substring(2,7)+'-'+v.substring(7);else if(v.length>2)v='('+v.substring(0,2)+') '+v.substring(2);input.value=v}
-function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
-function showOverlay(v){document.getElementById('overlay').classList.toggle('show',v)}
 
 initPros()
 </script>

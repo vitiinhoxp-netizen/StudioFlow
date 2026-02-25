@@ -43,20 +43,28 @@ export default async function handler(req, res) {
     return res.status(200).json({ agendamentos, total: count, page: Number(page), limit: Number(limit) })
   }
 
-  // ── PATCH: atualizar status ───────────────────────────────
+  // ── PATCH: atualizar status, reagendar ou anotar ─────────
   if (req.method === 'PATCH') {
-    const { id, status, observacoes } = req.body
+    const { id, status, observacoes, data, horario, nota_atendimento } = req.body
 
-    if (!id || !status) {
-      return res.status(400).json({ error: 'id e status são obrigatórios' })
+    if (!id) return res.status(400).json({ error: 'id é obrigatório' })
+
+    // Monta apenas os campos enviados
+    const updates = { updated_at: new Date().toISOString() }
+
+    if (status !== undefined) {
+      const statusValidos = ['pendente', 'pago', 'confirmado', 'cancelado']
+      if (!statusValidos.includes(status)) {
+        return res.status(400).json({ error: 'Status inválido' })
+      }
+      updates.status = status
     }
+    if (observacoes !== undefined) updates.observacoes = observacoes
+    if (data !== undefined) updates.data = data
+    if (horario !== undefined) updates.horario = horario
+    if (nota_atendimento !== undefined) updates.nota_atendimento = nota_atendimento
 
-    const statusValidos = ['pendente', 'pago', 'confirmado', 'cancelado']
-    if (!statusValidos.includes(status)) {
-      return res.status(400).json({ error: 'Status inválido' })
-    }
-
-    // Busca agendamento antes de atualizar
+    // Busca agendamento antes de atualizar (para lógica de cancelamento)
     const { data: agendamentoAtual } = await supabase
       .from('agendamentos')
       .select('*')
@@ -65,7 +73,7 @@ export default async function handler(req, res) {
 
     const { data: agendamento, error } = await supabase
       .from('agendamentos')
-      .update({ status, observacoes, updated_at: new Date().toISOString() })
+      .update(updates)
       .eq('id', id)
       .select()
       .single()
