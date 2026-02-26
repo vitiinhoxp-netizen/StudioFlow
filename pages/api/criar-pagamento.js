@@ -40,6 +40,8 @@ export default async function handler(req, res) {
 
     const pixKey = profissional?.pix_key || process.env.NEXT_PUBLIC_PIX_KEY || ''
     const telefoneProfissional = profissional?.telefone || null
+    console.log('[criar-pagamento] profissional telefone:', telefoneProfissional)
+    console.log('[criar-pagamento] cliente telefone:', cliente_telefone)
 
     // ── 1. Verifica conflito de horário ───────────────────────
     const { data: conflito } = await supabase
@@ -76,19 +78,23 @@ export default async function handler(req, res) {
 
     if (insertError) throw insertError
 
-    // ── 3. Envia WhatsApp ─────────────────────────────────────
-    Promise.all([
-      enviarConfirmacaoCliente(agendamento),
-      enviarNotificacaoAdmin(agendamento),
-      telefoneProfissional ? enviarNotificacaoProfissional(agendamento, telefoneProfissional) : Promise.resolve(),
-    ]).then(([r1, r2]) => {
-      if (r1?.success || r2?.success) {
-        supabase.from('agendamentos')
-          .update({ whatsapp_enviado: true })
-          .eq('id', agendamento.id)
-          .then(() => {})
+    // ── 3. Envia WhatsApp de forma síncrona para logar erros ──
+    try {
+      const [r1, r2, r3] = await Promise.all([
+        enviarConfirmacaoCliente(agendamento),
+        enviarNotificacaoAdmin(agendamento),
+        telefoneProfissional ? enviarNotificacaoProfissional(agendamento, telefoneProfissional) : Promise.resolve({ success: false, error: 'Sem telefone' }),
+      ])
+      console.log('[WhatsApp] Cliente:', r1)
+      console.log('[WhatsApp] Admin:', r2)
+      console.log('[WhatsApp] Profissional:', r3)
+
+      if (r1?.success || r3?.success) {
+        await supabase.from('agendamentos').update({ whatsapp_enviado: true }).eq('id', agendamento.id)
       }
-    })
+    } catch (waError) {
+      console.error('[WhatsApp] Erro geral:', waError)
+    }
 
     // ── 4. PIX: retorna direto sem passar pelo Mercado Pago ───
     if (metodo_pagamento === 'pix') {
