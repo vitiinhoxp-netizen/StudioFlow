@@ -2,7 +2,7 @@
 // PATCH: Atualizar perfil da cliente (dados complementares)
 import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY)
+const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
 
 function getClienteIdFromToken(authHeader) {
   if (!authHeader || !authHeader.startsWith('Bearer ')) return null
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
   const { telefone, data_nascimento, observacoes } = req.body
   const updates = {}
   if (telefone !== undefined) updates.telefone = telefone
-  if (data_nascimento !== undefined) updates.data_nascimento = data_nascimento || null
+  if (data_nascimento !== undefined) updates.data_nascimento = data_nascimento
   if (observacoes !== undefined) updates.observacoes = observacoes
 
   const { data: cliente, error } = await supabase
