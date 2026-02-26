@@ -625,7 +625,7 @@ async function clienteLogin(){
   if(!email||!pass){err.textContent='Preencha e-mail e senha';err.style.display='block';return}
   showOverlay(true)
   try{
-    const res=await fetch('/api/clientes/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,senha:pass})})
+    const res=await fetch('/api/clientes-auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,senha:pass})})
     const d=await res.json()
     if(!res.ok){err.textContent=d.error||'E-mail ou senha incorretos';err.style.display='block';return}
     S.clienteLogado=d.cliente
@@ -648,7 +648,7 @@ async function clienteCadastrar(){
   if(pass!==pass2){err.textContent='As senhas não coincidem';err.style.display='block';return}
   showOverlay(true)
   try{
-    const res=await fetch('/api/clientes/cadastro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,telefone:phone,email,senha:pass})})
+    const res=await fetch('/api/clientes-cadastro',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nome,telefone:phone,email,senha:pass})})
     const d=await res.json()
     if(!res.ok){err.textContent=d.error||'Erro ao criar conta';err.style.display='block';return}
     S.clienteLogado=d.cliente
@@ -665,7 +665,7 @@ function clienteLogout(){
 async function salvarPerfil(){
   showOverlay(true)
   try{
-    const res=await fetch('/api/clientes/perfil',{method:'PATCH',
+    const res=await fetch('/api/clientes-perfil',{method:'PATCH',
       headers:{'Content-Type':'application/json','Authorization':'Bearer '+localStorage.getItem('cli_token')},
       body:JSON.stringify({telefone:document.getElementById('perfil-phone').value.trim(),data_nascimento:document.getElementById('perfil-nasc').value,observacoes:document.getElementById('perfil-obs').value.trim()})
     })
