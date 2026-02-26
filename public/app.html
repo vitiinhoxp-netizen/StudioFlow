@@ -296,6 +296,11 @@
     <button class="btn-p" onclick="irParaAgendamento()">Agendar Horário</button>
     <button class="btn-s" onclick="go('s-pro-login')">Acesso Profissional</button>
   </div>
+  <div id="h-cli-info" style="display:none;margin-top:20px;padding:12px 20px;background:#ffffff12;border:1px solid #ffffff20;max-width:280px;text-align:center;position:relative">
+    <div style="font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);margin-bottom:4px">Logado como</div>
+    <div id="h-cli-nome" style="font-family:var(--font-d);font-size:1.1rem;color:var(--white);margin-bottom:8px">–</div>
+    <button onclick="clienteLogout()" style="background:transparent;border:1px solid #ffffff22;color:var(--taupe);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:6px 16px;cursor:pointer;transition:all .2s" onmouseover="this.style.borderColor='#ffffff55';this.style.color='#fff'" onmouseout="this.style.borderColor='#ffffff22';this.style.color='var(--taupe)'">Trocar conta</button>
+  </div>
   <div class="h-bottom">08h – 20h · Segunda a Sábado</div>
 </div>
 
@@ -607,9 +612,19 @@ async function initPros(){
   renderProCards();renderProSelList()
   const t=localStorage.getItem('cli_token'),c=localStorage.getItem('cli_data')
   if(t&&c){try{S.clienteLogado=JSON.parse(c)}catch(e){}}
+  atualizarPainelHome()
 }
 
 // ===== AUTH CLIENTE =====
+function atualizarPainelHome(){
+  const info=document.getElementById('h-cli-info')
+  if(S.clienteLogado){
+    document.getElementById('h-cli-nome').textContent=S.clienteLogado.nome.split(' ')[0]
+    info.style.display='block'
+  } else {
+    info.style.display='none'
+  }
+}
 function irParaAgendamento(){
   if(!S.clienteLogado){go('s-cli-login');return}
   document.getElementById('bk-client-name').textContent=S.clienteLogado.nome.split(' ')[0]
@@ -631,6 +646,7 @@ async function clienteLogin(){
     S.clienteLogado=d.cliente
     localStorage.setItem('cli_token',d.token);localStorage.setItem('cli_data',JSON.stringify(d.cliente))
     document.getElementById('cli-login-email').value='';document.getElementById('cli-login-pass').value=''
+    atualizarPainelHome()
     irParaAgendamento()
   }catch(e){err.textContent='Erro de conexão';err.style.display='block'}
   finally{showOverlay(false)}
@@ -653,6 +669,7 @@ async function clienteCadastrar(){
     if(!res.ok){err.textContent=d.error||'Erro ao criar conta';err.style.display='block';return}
     S.clienteLogado=d.cliente
     localStorage.setItem('cli_token',d.token);localStorage.setItem('cli_data',JSON.stringify(d.cliente))
+    atualizarPainelHome()
     irParaAgendamento()
   }catch(e){err.textContent='Erro de conexão';err.style.display='block'}
   finally{showOverlay(false)}
@@ -660,6 +677,7 @@ async function clienteCadastrar(){
 function clienteLogout(){
   S.clienteLogado=null
   localStorage.removeItem('cli_token');localStorage.removeItem('cli_data')
+  atualizarPainelHome()
   go('s-home')
 }
 async function salvarPerfil(){
