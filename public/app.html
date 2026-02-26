@@ -528,6 +528,25 @@
 
   <!-- CONFIG -->
   <div class="pro-panel" id="pp-config">
+    <!-- Chave PIX e Telefone -->
+    <div class="senha-box">
+      <div class="senha-title">Configurações</div>
+      <div class="senha-sub">Dados do seu perfil</div>
+      <div class="fg">
+        <label class="fl">Seu WhatsApp</label>
+        <input class="fi" type="tel" id="config-telefone" placeholder="(11) 9 9999-9999" oninput="maskPhone(this)" />
+        <div style="font-size:.62rem;color:var(--taupe);margin-top:4px">Para receber notificações de novos agendamentos</div>
+      </div>
+      <div class="fg">
+        <label class="fl">Chave PIX</label>
+        <input class="fi" type="text" id="config-pix" placeholder="CPF, e-mail, telefone ou chave aleatória" />
+        <div style="font-size:.62rem;color:var(--taupe);margin-top:4px">Chave que a cliente verá para realizar o pagamento</div>
+      </div>
+      <div class="senha-err" id="config-err"></div>
+      <div class="senha-ok" id="config-ok">✓ Configurações salvas!</div>
+      <button class="fbtn" onclick="salvarConfiguracoes()">Salvar Configurações</button>
+    </div>
+    <!-- Alterar Senha -->
     <div class="senha-box">
       <div class="senha-title">Alterar Senha</div>
       <div class="senha-sub">Segurança da conta</div>
@@ -817,6 +836,7 @@ function proTab(el,pid){
   if(pid==='pp-disp')renderDispPanel()
   if(pid==='pp-ger')renderGerencial()
   if(pid==='pp-clientes')renderClientes()
+  if(pid==='pp-config')carregarConfiguracoes()
 }
 
 // ===== AGENDA =====
@@ -1167,6 +1187,34 @@ async function alterarSenha(){
     if(res.ok){S.adminSecret=nova;document.getElementById('senha-atual').value='';document.getElementById('senha-nova').value='';document.getElementById('senha-conf').value='';ok.style.display='block';toast('✓ Senha alterada!')}
     else{const d=await res.json();err.textContent=d.error||'Senha atual incorreta';err.style.display='block'}
   }catch(e){err.textContent='Erro ao alterar senha';err.style.display='block'}
+  finally{showOverlay(false)}
+}
+
+// ===== CONFIGURAÇÕES =====
+async function carregarConfiguracoes(){
+  if(!S.proUser)return
+  try{
+    const res=await fetch('/api/profissionais')
+    if(!res.ok)return
+    const data=await res.json()
+    const pro=data.profissionais.find(p=>p.id===S.proUser.id)
+    if(pro){
+      document.getElementById('config-pix').value=pro.pix_key||''
+      document.getElementById('config-telefone').value=pro.telefone||''
+    }
+  }catch(e){}
+}
+async function salvarConfiguracoes(){
+  const pix=document.getElementById('config-pix').value.trim()
+  const tel=document.getElementById('config-telefone').value.trim()
+  const err=document.getElementById('config-err'),ok=document.getElementById('config-ok')
+  err.style.display='none';ok.style.display='none'
+  showOverlay(true)
+  try{
+    const res=await fetch('/api/pro-auth',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({profissional_id:S.proUser.id,pix_key:pix,telefone:tel})})
+    if(res.ok){ok.style.display='block';toast('✓ Configurações salvas!')}
+    else{const d=await res.json();err.textContent=d.error||'Erro ao salvar';err.style.display='block'}
+  }catch(e){err.textContent='Erro de conexão';err.style.display='block'}
   finally{showOverlay(false)}
 }
 

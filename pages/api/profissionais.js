@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   const supabase = supabaseAdmin()
   const { data, error } = await supabase
     .from('profissionais')
-    .select('id, nome, servicos')
+    .select('id, nome, servicos, pix_key, telefone')
     .eq('ativo', true)
     .order('nome')
 

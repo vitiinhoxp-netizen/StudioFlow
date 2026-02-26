@@ -3,7 +3,7 @@
 
 import { MercadoPagoConfig, Preference } from 'mercadopago'
 import { supabaseAdmin } from '../../lib/supabase'
-import { enviarConfirmacaoCliente, enviarNotificacaoAdmin } from '../../lib/whatsapp'
+import { enviarConfirmacaoCliente, enviarNotificacaoAdmin, enviarNotificacaoProfissional } from '../../lib/whatsapp'
 
 const mp = new MercadoPagoConfig({
   accessToken: process.env.MERCADOPAGO_ACCESS_TOKEN,
@@ -34,6 +34,16 @@ export default async function handler(req, res) {
   const supabase = supabaseAdmin()
 
   try {
+    // ── 0. Busca dados da profissional (pix_key e telefone) ───
+    const { data: profissional } = await supabase
+      .from('profissionais')
+      .select('pix_key, telefone')
+      .eq('id', profissional_id)
+      .single()
+
+    const pixKey = profissional?.pix_key || process.env.NEXT_PUBLIC_PIX_KEY || ''
+    const telefoneProfissional = profissional?.telefone || null
+
     // ── 1. Verifica se horário ainda está disponível ──────────
     const { data: conflito } = await supabase
       .from('agendamentos')
@@ -120,6 +130,7 @@ export default async function handler(req, res) {
     Promise.all([
       enviarConfirmacaoCliente(agendamento),
       enviarNotificacaoAdmin(agendamento),
+      telefoneProfissional ? enviarNotificacaoProfissional(agendamento, telefoneProfissional) : Promise.resolve(),
     ]).then(([r1, r2]) => {
       if (r1.success || r2.success) {
         supabase.from('agendamentos')
@@ -133,9 +144,9 @@ export default async function handler(req, res) {
     return res.status(200).json({
       agendamento_id: agendamento.id,
       mp_preference_id: mpResponse.id,
-      mp_init_point: mpResponse.init_point,       // URL checkout completo
-      mp_sandbox_init_point: mpResponse.sandbox_init_point, // URL sandbox (testes)
-      pix_key: process.env.NEXT_PUBLIC_PIX_KEY,
+      mp_init_point: mpResponse.init_point,
+      mp_sandbox_init_point: mpResponse.sandbox_init_point,
+      pix_key: pixKey,
     })
 
   } catch (error) {
