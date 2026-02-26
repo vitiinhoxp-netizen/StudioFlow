@@ -404,8 +404,8 @@
     </div>
     <div class="ppanel active" id="p-pix">
       <div class="pixbox">
-        <div class="pkl">Chave PIX (CPF)</div>
-        <div class="pk">095.253.535-16</div>
+        <div class="pkl">Chave PIX</div>
+        <div class="pk" id="pix-key-display">–</div>
         <div class="pa">Valor a transferir: <strong>R$ 30,00</strong></div>
         <button class="bcopy" onclick="copyPix()">Copiar chave PIX</button>
       </div>
@@ -626,7 +626,7 @@ const S={
 async function initPros(){
   try{
     const res=await fetch('/api/profissionais')
-    if(res.ok){const d=await res.json();d.profissionais.forEach((p,i)=>{if(PROS[i])PROS[i].id=p.id})}
+    if(res.ok){const d=await res.json();d.profissionais.forEach((p,i)=>{if(PROS[i]){PROS[i].id=p.id;PROS[i].pix_key=p.pix_key||'';PROS[i].telefone=p.telefone||''}})}
   }catch(e){PROS.forEach((p,i)=>p.id='demo-'+i)}
   renderProCards();renderProSelList()
   const t=localStorage.getItem('cli_token'),c=localStorage.getItem('cli_data')
@@ -763,10 +763,13 @@ function step1Next(){
   document.getElementById('sm-svc').textContent=S.service
   document.getElementById('sm-dur').textContent=fmtDur(S.serviceDur)
   document.getElementById('sm-dt').textContent=fmtDate(S.date)+' às '+S.time
+  // Carrega chave PIX da profissional selecionada
+  const pixKey=S.pro.pix_key||''
+  document.getElementById('pix-key-display').textContent=pixKey||'Não configurada'
   go('s-payment')
 }
 function payTab(el,pid){document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.ppanel').forEach(p=>p.classList.remove('active'));el.classList.add('active');document.getElementById(pid).classList.add('active')}
-function copyPix(){navigator.clipboard.writeText('09525353516').then(()=>toast('Chave PIX copiada! ✓')).catch(()=>toast('09525353516'))}
+function copyPix(){const key=document.getElementById('pix-key-display').textContent;navigator.clipboard.writeText(key).then(()=>toast('Chave PIX copiada! ✓')).catch(()=>toast(key))}
 async function confirmar(metodo){
   const btn=document.getElementById(metodo==='pix'?'btn-pix-confirm':'btn-card-confirm')
   btn.disabled=true;btn.classList.add('loading');showOverlay(true)
